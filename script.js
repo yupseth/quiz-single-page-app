@@ -4,6 +4,7 @@
 const content = document.querySelector(".content");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
+const playScreen = document.querySelector(".play-screen");
 
 // GLOBAL DECLARATIONS
 let categories = [];
@@ -11,6 +12,7 @@ let categories = [];
 // HELPERS
 const toggleHidden = function () {
   content.classList.add("hidden");
+  playScreen.classList.remove("hidden");
 };
 
 // CATEGORY DROPDOWN
