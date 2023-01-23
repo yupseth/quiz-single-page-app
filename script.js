@@ -1,10 +1,17 @@
 "use strict";
+
 // SELECTIONS
 const content = document.querySelector(".content");
 const dropdown = document.querySelector("select");
+const startButton = document.querySelector(".button-start");
 
 // GLOBAL DECLARATIONS
 let categories = [];
+
+// HELPERS
+const toggleHidden = function () {
+  content.classList.add("hidden");
+};
 
 // CATEGORY DROPDOWN
 fetch("https://opentdb.com/api_category.php")
@@ -18,3 +25,7 @@ fetch("https://opentdb.com/api_category.php")
       dropdown.appendChild(dropdownOption);
     });
   });
+
+startButton.addEventListener("click", () => {
+  toggleHidden();
+});

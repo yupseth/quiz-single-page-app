@@ -53,6 +53,12 @@ p {
   gap: 20px;
 }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
 .configuration-display {
   width: 250px;
 }
