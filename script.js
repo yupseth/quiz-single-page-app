@@ -24,6 +24,8 @@ let apiDataResults;
 let questionCounter = 0;
 let score = 0;
 
+nextButton.disabled = true;
+
 // HELPERS
 const toggleHidden = function () {
   content.classList.add("hidden");
@@ -154,4 +156,10 @@ startButton.addEventListener("click", () => {
   readSelectedCategory();
   readSelectedDifficulty();
   getQuestions();
+});
+
+nextButton.addEventListener("click", () => {
+  questionCounter++;
+  showNextQuestion();
+  nextButton.disabled = true;
 });
