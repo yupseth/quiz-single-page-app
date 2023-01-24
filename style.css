@@ -134,7 +134,12 @@ footer {
   background: transparent;
   border: 1px solid white;
   border-radius: 7px;
+  padding: 0px 10px;
 }
+
+/* .score {
+  color: #ffffff;
+} */
 
 .answer-area {
   display: flex;
