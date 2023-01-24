@@ -6,10 +6,6 @@
   box-sizing: border-box;
 }
 
-/* font-family: 'Literata', serif;
-font-family: 'Old Standard TT', serif;
-font-family: 'Roboto', sans-serif; */
-
 html {
   font-family: "Roboto", sans-serif;
 }
@@ -19,6 +15,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -53,6 +50,10 @@ footer {
   padding: 10px 0px;
 }
 
+.btn:hover {
+  background-color: aquamarine;
+}
+
 .hidden {
   visibility: hidden;
   opacity: 0;
@@ -66,9 +67,9 @@ footer {
   flex: 1 0 auto;
   align-items: center;
   justify-content: space-between;
-  height: 60%;
+  height: 50%;
   width: 100%;
-  gap: 20px;
+  gap: 40px;
 }
 
 .content.hidden {
@@ -76,20 +77,20 @@ footer {
 }
 
 .configuration-display {
+  padding-top: 80px;
   width: 250px;
 }
 
 .slider-container {
-  padding-top: 90px;
+  padding-top: 20px;
 }
 
 .button-wrapper {
   display: inline-block;
-
   margin-bottom: 200px;
 }
 .button-start {
-  border: solid white;
+  border: 1px solid white;
   border-radius: 50%;
   color: #ffffff;
   font-size: 60px;
@@ -108,12 +109,9 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 93vh;
+  height: 92%;
   width: 90%;
   transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
-  background-color: #d5d7e8;
-  /* asta va fi complet transparent, fara border.
-  elimina bg la final */
 }
 
 .question-answer-area {
@@ -121,9 +119,9 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80%;
+  height: 70%;
   width: 100%;
-  background-color: aqua;
+  background: transparent;
   gap: 30px;
 }
 
@@ -131,38 +129,63 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40%;
+  height: 60%;
   width: 100%;
-  background-color: pink;
-  border: 2px solid white;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 7px;
 }
 
 .answer-area {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60%;
+  height: 40%;
   width: 100%;
-  background-color: rgb(44, 11, 190);
-  border: 2px solid white;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 7px;
+
+  /* margin-bottom: 20px; */
 }
 
-.next-button {
+.next-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 10%;
-  width: 100%;
-  background-color: orange;
+  width: 20%;
+  background: transparent;
+  margin-top: 20px;
 }
 
-.reset-button {
+.next-button {
+  color: #ffffff;
+  height: 30px;
+  width: 50px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+}
+
+.reset-wrapper {
   display: flex;
+  align-self: flex-start;
   align-items: center;
   justify-content: flex-start;
-  height: 10%;
-  width: 100%;
-  background-color: blue;
+}
+
+.reset-button.hidden {
+  height: 0;
+  width: 0;
+  visibility: none;
+}
+.reset-button {
+  color: #ffffff;
+  background: transparent;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
 }
 
 /* FOR DESKTOP */
@@ -170,5 +193,11 @@ footer {
 @media only screen and (min-aspect-ratio: 4/3) {
   .button-wrapper {
     margin-bottom: 100px;
+  }
+
+  .play-screen {
+    width: 60%;
+    height: 70;
+    padding: 100px;
   }
 }
