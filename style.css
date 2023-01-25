@@ -220,12 +220,18 @@ select {
 
 /* FOR DESKTOP */
 
-@media only screen and (min-aspect-ratio: 4/3) {
+@media screen and (min-aspect-ratio: 1/1) {
+  .play-screen {
+    background: red;
+  }
+}
+@media only screen and (min-aspect-ratio: 16/9) {
   .button-wrapper {
     margin-bottom: 100px;
   }
 
   .play-screen {
+    background: green;
     width: 60%;
     height: 70;
     padding: 100px;
