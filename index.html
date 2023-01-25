@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="script.js"></script>
+    <script defer type="module" src="script.js"></script>
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="categoryRangeSlider.css" />
@@ -58,12 +58,27 @@
       </section>
 
       <div class="button-wrapper">
-        <button class="button-start">></button>
+        <button class="btn button-start">></button>
       </div>
     </div>
 
+    <div class="play-screen hidden">
+      <div class="question-answer-area">
+        <section class="question-area"></section>
+        <section class="score"></section>
+        <section class="answer-area">
+          <div class="button-grid"></div>
+          <div class="next-wrapper">
+            <button class="btn next-button">></button>
+          </div>
+        </section>
+      </div>
+    </div>
+    <section class="reset-wrapper hidden">
+      <button class="btn reset-button">↺</button>
+    </section>
     <footer>
-      © Yupseth 2023. Powered by
+      © Cristina Suica 2023. Powered by
       <a href="https://opentdb.com/" target="_blank">OpenTDB</a>
     </footer>
   </body>
