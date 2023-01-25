@@ -153,10 +153,10 @@ select {
   display: flex;
   flex-direction: column;
   /* align-items: center;  */
-
   height: 40%;
   width: 100%;
   background: transparent;
+  gap: 40px;
 }
 
 .button-grid {
@@ -184,9 +184,9 @@ select {
   align-items: center;
   justify-content: center;
   height: 10%;
-  width: 20%;
+  width: 100%;
   background: transparent;
-  margin-top: 15%;
+  /* margin-top: 15%; */
 }
 
 .next-button {
