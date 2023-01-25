@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="categoryRangeSlider.css" />
+    <link rel="stylesheet" href="difficultyRadioButtons.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +27,7 @@
       </section>
 
       <section class="configuration-display">
+        <select></select>
         <div class="slider-container">
           <input
             type="range"
@@ -37,7 +39,22 @@
           />
         </div>
 
-        <div class="difficulty">easy | medium | hard</div>
+        <div class="difficulty-radio-group">
+          <input
+            type="radio"
+            id="easy"
+            name="difficulty"
+            value="easy"
+            checked
+          />
+          <label for="easy">Easy</label>
+
+          <input type="radio" id="medium" name="difficulty" value="medium" />
+          <label for="medium"> Medium</label>
+
+          <input type="radio" id="hard" name="difficulty" value="hard" />
+          <label for="hard">Hard</label>
+        </div>
       </section>
 
       <div class="button-wrapper">
