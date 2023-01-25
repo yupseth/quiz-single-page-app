@@ -1,0 +1,90 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: 'Literata', serif;
+font-family: 'Old Standard TT', serif;
+font-family: 'Roboto', sans-serif; */
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+/* this stops extra scrolling */
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b;
+  text-align: center;
+  color: #ffffff;
+}
+
+h1 {
+  font-family: "Literata", serif;
+  font-size: 5.5rem;
+  padding-top: 70px;
+}
+
+p {
+  width: 95%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 60%;
+  width: 100%;
+}
+
+.button-wrapper {
+  display: inline-block;
+  margin-bottom: 80%;
+  /* margin-bottom: 300px; */
+}
+.button-start {
+  border: solid white;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  outline-offset: 4px;
+  height: 50px;
+  width: 50px;
+}
+
+a {
+  color: rgb(228, 50, 127);
+  text-decoration: none;
+}
+
+footer {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 10px 0px;
+}
+
+/* FOR DESKTOP */
+
+@media only screen and (min-aspect-ratio: 4/3) {
+  .button-wrapper {
+    margin-bottom: 17%;
+  }
+}
