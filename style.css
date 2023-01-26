@@ -232,7 +232,25 @@ select {
 
 @media screen and (min-aspect-ratio: 1/1) {
   .play-screen {
-    background: red;
+    /* background: red; */
+    width: 80%;
+    height: 100%;
+    padding: 50px;
+    transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
+  }
+
+  .question-area {
+    padding: 100px;
+  }
+
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .answer-button {
+    margin: 10px, 0;
   }
 }
 @media only screen and (min-aspect-ratio: 16/9) {
@@ -241,10 +259,11 @@ select {
   }
 
   .play-screen {
-    background: green;
+    /* background: green; */
     width: 60%;
     height: 70;
     padding: 100px;
+    transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
   }
 
   .button-grid {
