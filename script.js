@@ -50,6 +50,15 @@ const decodeHTMLEntities = function (text) {
   return textArea.value;
 };
 
+// highlight correct answers
+const highlightCorrectAnswer = function () {
+  for (const button of buttonGrid.children) {
+    if (button.textContent === apiDataResults[questionCounter].correct_answer) {
+      button.classList.add("correct-answer");
+    }
+  }
+};
+
 const disableAnswerButtons = function () {
   for (const button of buttonGrid.children) {
     button.disabled = true;
@@ -144,7 +153,7 @@ const showAnswers = function () {
       }
       updateScore();
       disableAnswerButtons();
-      // highlightCorrectAnswer();
+      highlightCorrectAnswer();
     });
   });
 };
