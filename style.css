@@ -162,7 +162,7 @@ select {
 .button-grid {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
 }
 
 .answer-button {
@@ -177,6 +177,16 @@ select {
   user-select: none;
   color: #ffffff;
   touch-action: manipulation;
+}
+
+.correct-answer {
+  border: 1px solid #69a230;
+  color: #69a230;
+}
+
+.incorrect-answer {
+  border: 1px solid #87100a;
+  color: #87100a;
 }
 
 .next-wrapper {
