@@ -4,7 +4,7 @@
 const content = document.querySelector(".content");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
-const resetButton = document.querySelector(".reset-wrapper");
+const resetButtonWrapper = document.querySelector(".reset-wrapper");
 const difficultyRadioButtons = document.getElementsByName("difficulty");
 
 const playScreen = document.querySelector(".play-screen");
@@ -16,6 +16,7 @@ const nextButton = document.querySelector(".next-button");
 const endScreen = document.querySelector(".end-screen");
 const result = document.querySelector(".result");
 const finalScore = document.querySelector(".final-score");
+const resetButton = document.querySelector(".reset-button");
 
 // GLOBAL DECLARATIONS
 let categories = [];
@@ -34,7 +35,7 @@ nextButton.disabled = true;
 const toggleHidden = function () {
   content.classList.add("hidden");
   playScreen.classList.remove("hidden");
-  resetButton.classList.remove("hidden");
+  resetButtonWrapper.classList.remove("hidden");
 };
 
 // hide play screen
@@ -46,6 +47,8 @@ const hidePlayScreen = function () {
 // display end screen
 const displayEndScreen = function () {
   endScreen.classList.remove("hidden");
+  resetButtonWrapper.classList.add("end");
+  resetButton.classList.add("end");
   finalScore.textContent = `Your Score: ${score}`;
 };
 
