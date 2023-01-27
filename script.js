@@ -4,7 +4,7 @@
 const content = document.querySelector(".content");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
-const resetButton = document.querySelector(".reset-wrapper");
+const resetButtonWrapper = document.querySelector(".reset-wrapper");
 const difficultyRadioButtons = document.getElementsByName("difficulty");
 
 const playScreen = document.querySelector(".play-screen");
@@ -12,6 +12,11 @@ const questionArea = document.querySelector(".question-area");
 const currentScore = document.querySelector(".score");
 const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
+
+const endScreen = document.querySelector(".end-screen");
+const result = document.querySelector(".result");
+const finalScore = document.querySelector(".final-score");
+const resetButton = document.querySelector(".reset-button");
 
 // GLOBAL DECLARATIONS
 let categories = [];
@@ -30,7 +35,21 @@ nextButton.disabled = true;
 const toggleHidden = function () {
   content.classList.add("hidden");
   playScreen.classList.remove("hidden");
-  resetButton.classList.remove("hidden");
+  resetButtonWrapper.classList.remove("hidden");
+};
+
+// hide play screen
+const hidePlayScreen = function () {
+  playScreen.classList.add("hidden");
+  nextButton.classList.add("hidden");
+};
+
+// display end screen
+const displayEndScreen = function () {
+  endScreen.classList.remove("hidden");
+  resetButtonWrapper.classList.add("end");
+  resetButton.classList.add("end");
+  finalScore.textContent = `Your Score: ${score}`;
 };
 
 //fisher yates true random
@@ -137,10 +156,12 @@ const showAnswers = function () {
   shuffleAnswers(answers);
   buttonGrid.innerHTML = "";
   answers.forEach((elem) => {
+    // 1. Create answer buttons for current question
     const answerButton = document.createElement("button");
     answerButton.classList.add("answer-button");
     buttonGrid.appendChild(answerButton);
     answerButton.textContent = elem;
+    // 2. Answer buttons functionality
     answerButton.addEventListener("click", () => {
       if (
         answerButton.textContent ===
@@ -169,6 +190,13 @@ startButton.addEventListener("click", () => {
 
 nextButton.addEventListener("click", () => {
   questionCounter++;
-  showNextQuestion();
-  nextButton.disabled = true;
+
+  if (questionCounter < 3) {
+    showNextQuestion();
+    nextButton.disabled = true;
+  } else {
+    hidePlayScreen();
+    displayEndScreen();
+    nextButton.disabled = true;
+  }
 });
