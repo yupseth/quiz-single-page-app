@@ -385,6 +385,7 @@ h4 {
   }
 
   .result {
+    margin-top: 0;
     margin-bottom: 70px;
     height: auto;
     width: 100%;

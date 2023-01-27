@@ -89,6 +89,9 @@ const updateScore = function () {
   currentScore.textContent = `Score: ${score}`;
 };
 
+// (re)initialize quiz
+const reset = function () {};
+
 //////////////////////////////////////////////
 // CATEGORY DROPDOWN
 fetch("https://opentdb.com/api_category.php")
