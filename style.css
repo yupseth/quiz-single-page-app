@@ -385,13 +385,10 @@ h4 {
   }
 
   .result {
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     height: auto;
     width: 100%;
-  }
-
-  footer {
-    margin-bottom: 20px;
+    padding: 20px;
   }
 
   .reset-button {
@@ -400,5 +397,9 @@ h4 {
 
   .reset-button:hover {
     transform: rotate(-360deg);
+  }
+
+  footer {
+    margin-bottom: 20px;
   }
 }
