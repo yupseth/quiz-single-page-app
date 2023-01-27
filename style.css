@@ -241,13 +241,40 @@ select {
   height: 92%;
   width: 90%;
   transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
-  background-color: #87100a;
+  /* background-color: #87100a; */
 }
 
 .end-screen.hidden {
   height: 0;
 }
 
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  border: 1px solid #ffffff;
+  border-radius: 7px;
+  background: transparent;
+}
+
+.final-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  font-size: 3rem;
+  color: #ffffff;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  margin-top: 30px;
+}
 /* FOR DESKTOP */
 
 @media screen and (min-aspect-ratio: 1/1) {
@@ -272,6 +299,12 @@ select {
   .answer-button {
     margin: 10px, 0;
   }
+
+  .end-screen {
+    width: 80%;
+    height: 100%;
+    transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
+  }
 }
 @media only screen and (min-aspect-ratio: 16/9) {
   .button-wrapper {
@@ -280,8 +313,9 @@ select {
 
   .play-screen {
     /* background: green; */
+    box-sizing: content-box;
     width: 60%;
-    height: 70;
+    height: 70%;
     padding: 100px;
     transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
   }
@@ -294,5 +328,16 @@ select {
 
   .answer-button {
     margin: 10px, 0;
+  }
+
+  .end-screen {
+    width: 50%;
+    height: 70%;
+    box-sizing: content-box;
+    transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
+  }
+
+  .result {
+    margin-bottom: 200px;
   }
 }

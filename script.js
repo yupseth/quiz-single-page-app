@@ -14,6 +14,8 @@ const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
 
 const endScreen = document.querySelector(".end-screen");
+const result = document.querySelector(".result");
+const finalScore = document.querySelector(".final-score");
 
 // GLOBAL DECLARATIONS
 let categories = [];
@@ -44,6 +46,7 @@ const hidePlayScreen = function () {
 // display end screen
 const displayEndScreen = function () {
   endScreen.classList.remove("hidden");
+  finalScore.textContent = `Your Score: ${score}`;
 };
 
 //fisher yates true random
@@ -185,13 +188,12 @@ startButton.addEventListener("click", () => {
 nextButton.addEventListener("click", () => {
   questionCounter++;
 
-  if (questionCounter < 1) {
+  if (questionCounter < 3) {
     showNextQuestion();
     nextButton.disabled = true;
   } else {
     hidePlayScreen();
     displayEndScreen();
-    console.log("oopa sa");
     nextButton.disabled = true;
   }
 });
