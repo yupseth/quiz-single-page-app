@@ -125,6 +125,10 @@ select {
   transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
 }
 
+.play-screen.hidden {
+  height: 0;
+}
+
 .question-answer-area {
   display: flex;
   flex-direction: column;
@@ -226,6 +230,22 @@ select {
   height: 20px;
   width: 20px;
   border-radius: 50%;
+}
+
+/* end screen */
+.end-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 92%;
+  width: 90%;
+  transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms;
+  background-color: #87100a;
+}
+
+.end-screen.hidden {
+  height: 0;
 }
 
 /* FOR DESKTOP */

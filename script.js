@@ -13,6 +13,8 @@ const currentScore = document.querySelector(".score");
 const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
 
+const endScreen = document.querySelector(".end-screen");
+
 // GLOBAL DECLARATIONS
 let categories = [];
 let answers = [];
@@ -31,6 +33,17 @@ const toggleHidden = function () {
   content.classList.add("hidden");
   playScreen.classList.remove("hidden");
   resetButton.classList.remove("hidden");
+};
+
+// hide play screen
+const hidePlayScreen = function () {
+  playScreen.classList.add("hidden");
+  nextButton.classList.add("hidden");
+};
+
+// display end screen
+const displayEndScreen = function () {
+  endScreen.classList.remove("hidden");
 };
 
 //fisher yates true random
@@ -137,10 +150,12 @@ const showAnswers = function () {
   shuffleAnswers(answers);
   buttonGrid.innerHTML = "";
   answers.forEach((elem) => {
+    // 1. Create answer buttons for current question
     const answerButton = document.createElement("button");
     answerButton.classList.add("answer-button");
     buttonGrid.appendChild(answerButton);
     answerButton.textContent = elem;
+    // 2. Answer buttons functionality
     answerButton.addEventListener("click", () => {
       if (
         answerButton.textContent ===
@@ -169,6 +184,14 @@ startButton.addEventListener("click", () => {
 
 nextButton.addEventListener("click", () => {
   questionCounter++;
-  showNextQuestion();
-  nextButton.disabled = true;
+
+  if (questionCounter < 1) {
+    showNextQuestion();
+    nextButton.disabled = true;
+  } else {
+    hidePlayScreen();
+    displayEndScreen();
+    console.log("oopa sa");
+    nextButton.disabled = true;
+  }
 });
