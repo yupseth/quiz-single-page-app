@@ -31,6 +31,16 @@ let score = 0;
 
 nextButton.disabled = true;
 
+// REFACTOR ideas: init, states
+
+const resetGame = function () {
+  hidePlayScreen();
+  hideEndScreen();
+  displayStartScreen();
+  score = 0;
+  questionCounter = 0;
+};
+
 // HELPERS
 const toggleHidden = function () {
   content.classList.add("hidden");
@@ -38,10 +48,14 @@ const toggleHidden = function () {
   resetButtonWrapper.classList.remove("hidden");
 };
 
+const displayStartScreen = function () {
+  content.classList.remove("hidden");
+  resetButtonWrapper.classList.add("hidden");
+};
+
 // hide play screen
 const hidePlayScreen = function () {
   playScreen.classList.add("hidden");
-  nextButton.classList.add("hidden");
 };
 
 // display end screen
@@ -50,6 +64,12 @@ const displayEndScreen = function () {
   resetButtonWrapper.classList.add("end");
   resetButton.classList.add("end");
   finalScore.textContent = `Your Score: ${score}`;
+};
+
+const hideEndScreen = function () {
+  endScreen.classList.add("hidden");
+  resetButtonWrapper.classList.remove("end");
+  resetButton.classList.remove("end");
 };
 
 //fisher yates true random
@@ -202,4 +222,8 @@ nextButton.addEventListener("click", () => {
     displayEndScreen();
     nextButton.disabled = true;
   }
+});
+
+resetButton.addEventListener("click", () => {
+  resetGame();
 });
