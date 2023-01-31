@@ -82,7 +82,7 @@ img {
 }
 
 /* home-screen */
-.content {
+.start-screen {
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -93,7 +93,7 @@ img {
   gap: 40px;
 }
 
-.content.hidden {
+.start-screen.hidden {
   height: 0;
 }
 

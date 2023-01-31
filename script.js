@@ -1,7 +1,7 @@
 "use strict";
 
 // SELECTIONS
-const content = document.querySelector(".content");
+const startScreen = document.querySelector(".start-screen");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
 const resetButtonWrapper = document.querySelector(".reset-wrapper");
@@ -28,8 +28,36 @@ let apiData;
 let apiDataResults;
 let questionCounter = 0;
 let score = 0;
+let questionLimit = 2;
 
+let state = "start";
 nextButton.disabled = true;
+
+const setState = function () {
+  switch (state) {
+    case "start":
+      displayStartScreen();
+      break;
+
+    case "playing":
+      displayPlayScreen();
+      updateScore();
+      readSelectedCategory();
+      readSelectedDifficulty();
+      getQuestions();
+      break;
+
+    case "end":
+      displayEndScreen();
+      break;
+  }
+};
+
+const init = function () {
+  score = 0;
+  questionCounter = 0;
+  nextButton.disabled = true;
+};
 
 // REFACTOR ideas: init, states
 
@@ -37,30 +65,42 @@ const resetGame = function () {
   hidePlayScreen();
   hideEndScreen();
   displayStartScreen();
-  score = 0;
-  questionCounter = 0;
+  init();
 };
 
 // HELPERS
-const toggleHidden = function () {
-  content.classList.add("hidden");
-  playScreen.classList.remove("hidden");
-  resetButtonWrapper.classList.remove("hidden");
-};
 
 const displayStartScreen = function () {
-  content.classList.remove("hidden");
-  resetButtonWrapper.classList.add("hidden");
+  hidePlayScreen();
+  hideEndScreen();
+  startScreen.classList.remove("hidden");
+  init();
+};
+
+const hideStartScreen = function () {
+  startScreen.classList.add("hidden");
+};
+
+const displayPlayScreen = function () {
+  hideStartScreen();
+  hideEndScreen();
+  playScreen.classList.remove("hidden");
+  resetButtonWrapper.classList.remove("hidden");
 };
 
 // hide play screen
 const hidePlayScreen = function () {
   playScreen.classList.add("hidden");
+  resetButtonWrapper.classList.add("hidden");
 };
 
 // display end screen
 const displayEndScreen = function () {
+  hideStartScreen();
+  hidePlayScreen();
   endScreen.classList.remove("hidden");
+  resetButtonWrapper.classList.remove("hidden");
+  // add endScreen styling to reset button
   resetButtonWrapper.classList.add("end");
   resetButton.classList.add("end");
   finalScore.textContent = `Your Score: ${score}`;
@@ -70,6 +110,7 @@ const hideEndScreen = function () {
   endScreen.classList.add("hidden");
   resetButtonWrapper.classList.remove("end");
   resetButton.classList.remove("end");
+  resetButtonWrapper.classList.add("hidden");
 };
 
 //fisher yates true random
@@ -109,9 +150,6 @@ const updateScore = function () {
   currentScore.textContent = `Score: ${score}`;
 };
 
-// (re)initialize quiz
-const reset = function () {};
-
 //////////////////////////////////////////////
 // CATEGORY DROPDOWN
 fetch("https://opentdb.com/api_category.php")
@@ -146,9 +184,10 @@ const readSelectedDifficulty = () => {
 // GET API DATA
 const getQuestions = () => {
   isLoading = true;
-  fetch(
+  let url = new URL(
     `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
-  )
+  );
+  fetch(url.href)
     .then((response) => response.json())
     .then((data) => {
       apiData = data;
@@ -204,26 +243,23 @@ const showAnswers = function () {
 
 // EVENTS
 startButton.addEventListener("click", () => {
-  updateScore();
-  toggleHidden();
-  readSelectedCategory();
-  readSelectedDifficulty();
-  getQuestions();
+  state = "playing";
+  setState();
 });
 
 nextButton.addEventListener("click", () => {
   questionCounter++;
+  nextButton.disabled = true;
 
-  if (questionCounter < 3) {
+  if (questionCounter < questionLimit) {
     showNextQuestion();
-    nextButton.disabled = true;
   } else {
-    hidePlayScreen();
-    displayEndScreen();
-    nextButton.disabled = true;
+    state = "end";
+    setState();
   }
 });
 
 resetButton.addEventListener("click", () => {
-  resetGame();
+  state = "start";
+  setState();
 });
