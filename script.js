@@ -4,14 +4,16 @@
 const startScreen = document.querySelector(".start-screen");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
-const resetButtonWrapper = document.querySelector(".reset-wrapper");
 const difficultyRadioButtons = document.getElementsByName("difficulty");
+
+const loadingScreen = document.querySelector(".loading-screen");
 
 const playScreen = document.querySelector(".play-screen");
 const questionArea = document.querySelector(".question-area");
 const currentScore = document.querySelector(".score");
 const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
+const resetButtonWrapper = document.querySelector(".reset-wrapper");
 
 const endScreen = document.querySelector(".end-screen");
 const result = document.querySelector(".result");
@@ -21,7 +23,6 @@ const resetButton = document.querySelector(".reset-button");
 // GLOBAL DECLARATIONS
 let categories = [];
 let answers = [];
-let isLoading = false;
 let selectedCategory;
 let selectedDifficulty;
 let apiData;
@@ -30,21 +31,21 @@ let questionCounter = 0;
 let score = 0;
 let questionLimit = 2;
 
-let state = "start";
 nextButton.disabled = true;
 
-const setState = function () {
+const setState = function (state) {
   switch (state) {
     case "start":
       displayStartScreen();
       break;
 
+    case "loading":
+      displayLoadingScreen();
+      break;
+
     case "playing":
       displayPlayScreen();
       updateScore();
-      readSelectedCategory();
-      readSelectedDifficulty();
-      getQuestions();
       break;
 
     case "end":
@@ -59,18 +60,9 @@ const init = function () {
   nextButton.disabled = true;
 };
 
-// REFACTOR ideas: init, states
-
-const resetGame = function () {
-  hidePlayScreen();
-  hideEndScreen();
-  displayStartScreen();
-  init();
-};
-
-// HELPERS
-
+// DISPLAY / HIDE SCREENS
 const displayStartScreen = function () {
+  hideLoadingScreen();
   hidePlayScreen();
   hideEndScreen();
   startScreen.classList.remove("hidden");
@@ -81,7 +73,19 @@ const hideStartScreen = function () {
   startScreen.classList.add("hidden");
 };
 
+const displayLoadingScreen = function () {
+  loadingScreen.classList.remove("hidden");
+  hideEndScreen();
+  hidePlayScreen();
+  hideStartScreen();
+};
+
+const hideLoadingScreen = function () {
+  loadingScreen.classList.add("hidden");
+};
+
 const displayPlayScreen = function () {
+  hideLoadingScreen();
   hideStartScreen();
   hideEndScreen();
   playScreen.classList.remove("hidden");
@@ -96,6 +100,7 @@ const hidePlayScreen = function () {
 
 // display end screen
 const displayEndScreen = function () {
+  hideLoadingScreen();
   hideStartScreen();
   hidePlayScreen();
   endScreen.classList.remove("hidden");
@@ -152,17 +157,27 @@ const updateScore = function () {
 
 //////////////////////////////////////////////
 // CATEGORY DROPDOWN
-fetch("https://opentdb.com/api_category.php")
-  .then((response) => response.json())
-  .then((data) => {
-    categories = [...data.trivia_categories];
-    categories.forEach((category) => {
-      const dropdownOption = document.createElement("option");
-      dropdownOption.textContent = category.name;
-      dropdownOption.value = category.id;
-      dropdown.appendChild(dropdownOption);
+
+const fetchCategories = function () {
+  setState("loading");
+
+  fetch("https://opentdb.com/api_category.php")
+    .then((response) => response.json())
+    .then((data) => {
+      categories = [...data.trivia_categories];
+      categories.forEach((category) => {
+        const dropdownOption = document.createElement("option");
+        dropdownOption.textContent = category.name;
+        dropdownOption.value = category.id;
+        dropdown.appendChild(dropdownOption);
+      });
+    })
+    .finally(() => {
+      setState("start");
     });
-  });
+};
+
+fetchCategories();
 
 // READ CATEGORY AND DIFFICULTY
 const readSelectedCategory = () => {
@@ -183,7 +198,7 @@ const readSelectedDifficulty = () => {
 
 // GET API DATA
 const getQuestions = () => {
-  isLoading = true;
+  setState("loading");
   let url = new URL(
     `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
   );
@@ -195,7 +210,7 @@ const getQuestions = () => {
       showNextQuestion();
     })
     .finally(() => {
-      isLoading = false;
+      setState("playing");
     });
 };
 
@@ -243,8 +258,10 @@ const showAnswers = function () {
 
 // EVENTS
 startButton.addEventListener("click", () => {
-  state = "playing";
-  setState();
+  // setState("playing");
+  readSelectedCategory();
+  readSelectedDifficulty();
+  getQuestions();
 });
 
 nextButton.addEventListener("click", () => {
@@ -254,12 +271,10 @@ nextButton.addEventListener("click", () => {
   if (questionCounter < questionLimit) {
     showNextQuestion();
   } else {
-    state = "end";
-    setState();
+    setState("end");
   }
 });
 
 resetButton.addEventListener("click", () => {
-  state = "start";
-  setState();
+  setState("start");
 });
