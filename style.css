@@ -84,13 +84,47 @@ img {
 
 /* loading-screen */
 .loading-screen {
-  width: 300px;
-  height: 300px;
-  background-color: pink;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100px;
+  height: 100px;
+  margin-top: 40vh;
 }
 
 .loading-screen.hidden {
   height: 0;
+  margin-top: 0;
+}
+
+.loading-screen div {
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
+}
+
+.loading-screen div:nth-child(2) {
+  animation-delay: 0.1s;
+  opacity: 0.8;
+}
+.loading-screen div:nth-child(3) {
+  animation-delay: 0.2s;
+  opacity: 0.6;
+}
+.loading-screen div:nth-child(4) {
+  animation-delay: 0.3s;
+  opacity: 0.4;
+}
+
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
 }
 
 /* start-screen */
@@ -333,6 +367,10 @@ h4 {
 /* /////////////////////////////////////////////////// */
 /* FOR DESKTOP */
 @media screen and (min-aspect-ratio: 1/1) {
+  .loading-screen {
+    margin-top: 50vh;
+  }
+
   .play-screen {
     width: 80%;
     height: 100%;
@@ -371,6 +409,10 @@ h4 {
 
 /* /////////////////////////////////////////////////// */
 @media only screen and (min-aspect-ratio: 16/9) {
+  .loading-screen {
+    margin-top: 50vh;
+  }
+
   .button-wrapper {
     margin-bottom: 100px;
   }
