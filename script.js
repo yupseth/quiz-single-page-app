@@ -30,6 +30,7 @@ let apiDataResults;
 let questionCounter = 0;
 let score = 0;
 let questionLimit = 2;
+let extraLoadingTime = 1500;
 
 nextButton.disabled = true;
 
@@ -158,26 +159,27 @@ const updateScore = function () {
 //////////////////////////////////////////////
 // CATEGORY DROPDOWN
 
-const fetchCategories = function () {
+const getCategories = function () {
   setState("loading");
-
-  fetch("https://opentdb.com/api_category.php")
-    .then((response) => response.json())
-    .then((data) => {
-      categories = [...data.trivia_categories];
-      categories.forEach((category) => {
-        const dropdownOption = document.createElement("option");
-        dropdownOption.textContent = category.name;
-        dropdownOption.value = category.id;
-        dropdown.appendChild(dropdownOption);
+  setTimeout(() => {
+    fetch("https://opentdb.com/api_category.php")
+      .then((response) => response.json())
+      .then((data) => {
+        categories = [...data.trivia_categories];
+        categories.forEach((category) => {
+          const dropdownOption = document.createElement("option");
+          dropdownOption.textContent = category.name;
+          dropdownOption.value = category.id;
+          dropdown.appendChild(dropdownOption);
+        });
+      })
+      .finally(() => {
+        setState("start");
       });
-    })
-    .finally(() => {
-      setState("start");
-    });
+  }, extraLoadingTime);
 };
 
-fetchCategories();
+getCategories();
 
 // READ CATEGORY AND DIFFICULTY
 const readSelectedCategory = () => {
@@ -199,19 +201,21 @@ const readSelectedDifficulty = () => {
 // GET API DATA
 const getQuestions = () => {
   setState("loading");
-  let url = new URL(
-    `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
-  );
-  fetch(url.href)
-    .then((response) => response.json())
-    .then((data) => {
-      apiData = data;
-      apiDataResults = apiData.results;
-      showNextQuestion();
-    })
-    .finally(() => {
-      setState("playing");
-    });
+  setTimeout(() => {
+    let url = new URL(
+      `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
+    );
+    fetch(url.href)
+      .then((response) => response.json())
+      .then((data) => {
+        apiData = data;
+        apiDataResults = apiData.results;
+        showNextQuestion();
+      })
+      .finally(() => {
+        setState("playing");
+      });
+  }, extraLoadingTime);
 };
 
 // DISPLAY QUESTIONS AND ANSWERS
