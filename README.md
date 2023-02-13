@@ -8,7 +8,7 @@
 
 ## About
 
-QUIZLE is a responsive single page web application using HTML, CSS and vanilla JS. It relies on JavaScript to provide the quiz questions and answers, assess the latter's suitability, and accordingly keep the user’s score. Once exhausting the ten multiple choice questions, it displays the final result.
+QUIZLE is a responsive single page web application using HTML, CSS and vanilla JS. It relies on JavaScript to fetch the quiz questions and answers, assess the latter's suitability, and accordingly keep the user’s score. Once exhausting the ten multiple choice questions, it displays the final result.
 
 Please consider that the content of this app (categories, questions and answers, along with their truth value) is exclusively dependent on the [Open Trivia Database API](https://opentdb.com). Hence the possibility of unavailable questions for certain categories and difficulty levels, or even inaccuracy of expression and correctness.
 
@@ -34,19 +34,19 @@ Thus, Quizle came as a pretext of getting more comfortable with API calls, DOM m
 
 ### Challanges
 
-As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of **valuable knowledge aquisitions**:
+As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of ==valuable knowledge aquisitions==:
 
 #### JavaScript:
 
 - Understanding how API calls work
 - Improving the understanding of manipulating large collections of data
 - Managing to alternate between different stages of game-play in a single page app
-- Populating the dropdown options using DOM.
-- Generating answer buttons with predictable behaviour using DOM
+- Populating the dropdown options using DOM manipulation
+- Generating answer buttons with predictable behaviour using DOM manipulation
 
 #### CSS:
 
-- Implementing an accessible way of hiding the irrelevant screens in accordance with the game-stage
+- Implementing a way of hiding the irrelevant screens in accordance with the game-stage
 - Displaying consistent (and responsive) styles for desktop, tablet, and mobile screens
 - Creating custom difficulty slider
 - Creating an animated loader
