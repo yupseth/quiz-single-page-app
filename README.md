@@ -1,4 +1,4 @@
-# Quizle
+![](images/banner.png)
 
 ### _Single Page Application_
 
