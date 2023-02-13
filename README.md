@@ -34,7 +34,7 @@ Thus, Quizle came as a pretext of getting more comfortable with API calls, DOM m
 
 ### Challanges
 
-As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of ==valuable knowledge aquisitions==:
+As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of **_valuable knowledge aquisitions_**:
 
 #### JavaScript:
 
