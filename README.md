@@ -34,12 +34,12 @@ Thus, Quizle came as a pretext of getting more comfortable with API calls, DOM m
 
 ### Challanges
 
-As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of valuable knowledge aquisitions.
+As a self-taught web developer, there was no scarcity of challenges throughout the development processes of this project. However, they concluded in a set of **valuable knowledge aquisitions**:
 
 #### JavaScript:
 
 - Understanding how API calls work
-- Perfecting the understanding of manipulating large collections of data
+- Improving the understanding of manipulating large collections of data
 - Managing to alternate between different stages of game-play in a single page app
 - Populating the dropdown options using DOM.
 - Generating answer buttons with predictable behaviour using DOM
