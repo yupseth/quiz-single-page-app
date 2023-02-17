@@ -15,6 +15,9 @@ const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
 const resetButtonWrapper = document.querySelector(".reset-wrapper");
 
+const errorScreen = document.querySelector(".error-screen");
+const errorMessage = document.querySelector(".error-message");
+
 const endScreen = document.querySelector(".end-screen");
 const result = document.querySelector(".result");
 const finalScore = document.querySelector(".final-score");
@@ -29,10 +32,41 @@ let apiData;
 let apiDataResults;
 let questionCounter = 0;
 let score = 0;
-let questionLimit = 2;
+let questionLimit = 10;
 let extraLoadingTime = 1500;
 
 nextButton.disabled = true;
+
+const stateHidePairs = [
+  {
+    state: "start",
+    hideMethod: hideStartScreen,
+  },
+  {
+    state: "loading",
+    hideMethod: hideLoadingScreen,
+  },
+  {
+    state: "playing",
+    hideMethod: hidePlayScreen,
+  },
+  {
+    state: "error",
+    hideMethod: hideErrorScreen,
+  },
+  {
+    state: "end",
+    hideMethod: hideEndScreen,
+  },
+];
+
+const testForEncode = () => {
+  apiData.results.forEach((question) => {
+    if (question.correct_answer.includes("&"))
+      console.log("AVEM:", question.correct_answer);
+    else console.log(question.correct_answer);
+  });
+};
 
 const setState = function (state) {
   switch (state) {
@@ -45,8 +79,13 @@ const setState = function (state) {
       break;
 
     case "playing":
+      showNextQuestion();
       displayPlayScreen();
       updateScore();
+      break;
+
+    case "error":
+      displayErrorScreen();
       break;
 
     case "end":
@@ -61,49 +100,60 @@ const init = function () {
   nextButton.disabled = true;
 };
 
+const hideOtherThan = (currentState) => {
+  stateHidePairs.forEach((pair) => {
+    if (pair.state !== currentState) pair.hideMethod();
+  });
+};
+
 // DISPLAY / HIDE SCREENS
 const displayStartScreen = function () {
-  hideLoadingScreen();
-  hidePlayScreen();
-  hideEndScreen();
+  hideOtherThan("start");
   startScreen.classList.remove("hidden");
   init();
 };
 
-const hideStartScreen = function () {
+function hideStartScreen() {
   startScreen.classList.add("hidden");
-};
-
+}
+/////////////////////////////////
 const displayLoadingScreen = function () {
   loadingScreen.classList.remove("hidden");
-  hideEndScreen();
-  hidePlayScreen();
-  hideStartScreen();
+  hideOtherThan("loading");
 };
 
-const hideLoadingScreen = function () {
+function hideLoadingScreen() {
   loadingScreen.classList.add("hidden");
-};
-
+}
+/////////////////////////////////
 const displayPlayScreen = function () {
-  hideLoadingScreen();
-  hideStartScreen();
-  hideEndScreen();
+  hideOtherThan("playing");
   playScreen.classList.remove("hidden");
   resetButtonWrapper.classList.remove("hidden");
 };
 
-// hide play screen
-const hidePlayScreen = function () {
+function hidePlayScreen() {
   playScreen.classList.add("hidden");
   resetButtonWrapper.classList.add("hidden");
+}
+/////////////////////////////////
+const displayErrorScreen = function () {
+  hideOtherThan("error");
+
+  errorScreen.classList.remove("hidden");
+
+  resetButtonWrapper.classList.remove("hidden");
+  resetButtonWrapper.classList.add("end");
+  resetButton.classList.add("end");
 };
 
-// display end screen
+function hideErrorScreen() {
+  errorScreen.classList.add("hidden");
+}
+
+/////////////////////////////////
 const displayEndScreen = function () {
-  hideLoadingScreen();
-  hideStartScreen();
-  hidePlayScreen();
+  hideOtherThan("end");
   endScreen.classList.remove("hidden");
   resetButtonWrapper.classList.remove("hidden");
   // add endScreen styling to reset button
@@ -112,12 +162,13 @@ const displayEndScreen = function () {
   finalScore.textContent = `Your Score: ${score}`;
 };
 
-const hideEndScreen = function () {
+function hideEndScreen() {
   endScreen.classList.add("hidden");
   resetButtonWrapper.classList.remove("end");
   resetButton.classList.remove("end");
   resetButtonWrapper.classList.add("hidden");
-};
+}
+/////////////////////////////////
 
 //fisher yates true random
 const shuffleAnswers = function (array) {
@@ -139,7 +190,16 @@ const decodeHTMLEntities = function (text) {
 // highlight correct answers
 const highlightCorrectAnswer = function () {
   for (const button of buttonGrid.children) {
-    if (button.textContent === apiDataResults[questionCounter].correct_answer) {
+    console.log("textul de pe buton:", button.textContent);
+    console.log(
+      "raspunsul din apel:",
+      decodeHTMLEntities(apiDataResults[questionCounter].correct_answer)
+    );
+    if (
+      button.textContent ===
+      decodeHTMLEntities(apiDataResults[questionCounter].correct_answer)
+    ) {
+      console.log("MATCH!");
       button.classList.add("correct-answer");
     }
   }
@@ -203,17 +263,22 @@ const getQuestions = () => {
   setState("loading");
   setTimeout(() => {
     let url = new URL(
-      `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
+      `https://opentdb.com/api.php?amount=${questionLimit}&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`
     );
     fetch(url.href)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         apiData = data;
         apiDataResults = apiData.results;
-        showNextQuestion();
+        // showNextQuestion();
+        testForEncode();
       })
       .finally(() => {
-        setState("playing");
+        //test for error response_code
+        const appropriateState =
+          apiData.response_code > 0 ? "error" : "playing";
+        setState(appropriateState);
       });
   }, extraLoadingTime);
 };
@@ -246,7 +311,7 @@ const showAnswers = function () {
     answerButton.addEventListener("click", () => {
       if (
         answerButton.textContent ===
-        apiDataResults[questionCounter].correct_answer
+        decodeHTMLEntities(apiDataResults[questionCounter].correct_answer)
       ) {
         score++;
         answerButton.classList.add("correct-answer");
