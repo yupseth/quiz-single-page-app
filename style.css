@@ -56,7 +56,6 @@ footer {
 }
 
 .btn:hover {
-  /* background-color: aquamarine; */
   box-shadow: 0 0 5px #ffffff;
 }
 
@@ -163,10 +162,6 @@ label {
   cursor: pointer;
 }
 
-/* .difficulty-radio-group input[type="radio"]:checked + label {
-  border: 1px solid white;
-} */
-
 .difficulty-radio-group input[type="radio"]:checked + label[for="easy"] {
   border: 1px solid rgb(90, 245, 141);
   border-radius: 7px;
@@ -208,7 +203,6 @@ label {
   align-items: center;
   height: 92%;
   width: 90%;
-  /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
 }
 
 .play-screen.hidden {
@@ -299,8 +293,7 @@ label {
   align-self: flex-start;
   align-items: center;
   justify-content: flex-start;
-  /* background: red; */
-  /* padding-left: 20px; */
+
   height: 20px;
   width: 20px;
   margin-left: 20px;
@@ -363,7 +356,6 @@ label {
   align-items: center;
   height: 92%;
   width: 90%;
-  /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
 }
 
 .end-screen.hidden {
@@ -411,7 +403,6 @@ h4 {
     width: 80%;
     height: 100%;
     padding: 50px;
-    /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
   }
 
   .question-area {
@@ -427,7 +418,6 @@ h4 {
   .end-screen {
     width: 80%;
     height: 100%;
-    /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
   }
 
   .reset-button {
@@ -454,7 +444,6 @@ h4 {
     width: 60%;
     height: 70%;
     padding: 100px;
-    /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
   }
 
   .button-grid {
@@ -467,7 +456,6 @@ h4 {
     width: 50%;
     height: 70%;
     box-sizing: content-box;
-    /* transition: width 600ms ease-out 400ms, height 600ms ease-out 400ms; */
   }
 
   .result {

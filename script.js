@@ -61,14 +61,6 @@ const stateHidePairs = [
   },
 ];
 
-const testForEncode = () => {
-  apiData.results.forEach((question) => {
-    if (question.correct_answer.includes("&"))
-      console.log("AVEM:", question.correct_answer);
-    else console.log(question.correct_answer);
-  });
-};
-
 const setState = function (state) {
   switch (state) {
     case "start":
@@ -167,9 +159,9 @@ const displayEndScreen = function () {
 
 function hideEndScreen() {
   endScreen.classList.add("hidden");
-  resetButtonWrapper.classList.remove("end");
   resetButton.classList.remove("end");
   resetButtonWrapper.classList.add("hidden");
+  resetButtonWrapper.classList.remove("end");
 }
 /////////////////////////////////
 
@@ -193,16 +185,10 @@ const decodeHTMLEntities = function (text) {
 // highlight correct answers
 const highlightCorrectAnswer = function () {
   for (const button of buttonGrid.children) {
-    console.log("textul de pe buton:", button.textContent);
-    console.log(
-      "raspunsul din apel:",
-      decodeHTMLEntities(apiDataResults[questionCounter].correct_answer)
-    );
     if (
       button.textContent ===
       decodeHTMLEntities(apiDataResults[questionCounter].correct_answer)
     ) {
-      console.log("MATCH!");
       button.classList.add("correct-answer");
     }
   }
@@ -271,11 +257,9 @@ const getQuestions = () => {
     fetch(url.href)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         apiData = data;
         apiDataResults = apiData.results;
         // showNextQuestion();
-        testForEncode();
       })
       .finally(() => {
         //test for error response_code
