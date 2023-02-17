@@ -5,6 +5,7 @@ const startScreen = document.querySelector(".start-screen");
 const dropdown = document.querySelector("select");
 const startButton = document.querySelector(".button-start");
 const difficultyRadioButtons = document.getElementsByName("difficulty");
+const footer = document.querySelector("footer");
 
 const loadingScreen = document.querySelector(".loading-screen");
 
@@ -111,10 +112,12 @@ const displayStartScreen = function () {
   hideOtherThan("start");
   startScreen.classList.remove("hidden");
   init();
+  footer.classList.remove("hidden");
 };
 
 function hideStartScreen() {
   startScreen.classList.add("hidden");
+  footer.classList.add("hidden");
 }
 /////////////////////////////////
 const displayLoadingScreen = function () {
