@@ -163,21 +163,6 @@ label {
   cursor: pointer;
 }
 
-.difficulty-radio-group input[type="radio"]:checked + label[for="easy"] {
-  border: 1px solid rgb(90, 245, 141);
-  border-radius: 7px;
-}
-
-.difficulty-radio-group input[type="radio"]:checked + label[for="medium"] {
-  border: 1px solid rgb(255, 248, 119);
-  border-radius: 7px;
-}
-
-.difficulty-radio-group input[type="radio"]:checked + label[for="hard"] {
-  border: 1px solid rgb(255, 96, 96);
-  border-radius: 7px;
-}
-
 .button-wrapper {
   display: inline-block;
   margin-bottom: 200px;
