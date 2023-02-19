@@ -218,6 +218,12 @@ label {
   padding: 0px 10px;
 }
 
+.question-counter {
+  height: 20px;
+  width: 50px;
+  border-radius: 7px;
+}
+
 /* ///////////////// */
 .answer-area {
   display: flex;
@@ -288,6 +294,7 @@ label {
   background: transparent;
   border: 1px solid #ffffff;
   border-radius: 60px;
+  margin-right: -30px;
 }
 
 .reset-wrapper {
