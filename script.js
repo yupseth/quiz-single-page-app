@@ -15,6 +15,7 @@ const currentScore = document.querySelector(".score");
 const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
 const resetButtonWrapper = document.querySelector(".reset-wrapper");
+const resetPlayScreen = document.querySelector(".reset-playscreen");
 
 const errorScreen = document.querySelector(".error-screen");
 const errorMessage = document.querySelector(".error-message");
@@ -33,7 +34,7 @@ let apiData;
 let apiDataResults;
 let questionCounter = 0;
 let score = 0;
-let questionLimit = 10;
+let questionLimit = 2;
 let extraLoadingTime = 1500;
 
 nextButton.disabled = true;
@@ -124,7 +125,7 @@ function hideLoadingScreen() {
 const displayPlayScreen = function () {
   hideOtherThan("playing");
   playScreen.classList.remove("hidden");
-  resetButtonWrapper.classList.remove("hidden");
+  // resetButtonWrapper.classList.remove("hidden");
 };
 
 function hidePlayScreen() {
@@ -329,6 +330,9 @@ nextButton.addEventListener("click", () => {
   } else {
     setState("end");
   }
+});
+resetPlayScreen.addEventListener("click", () => {
+  setState("start");
 });
 
 resetButton.addEventListener("click", () => {
