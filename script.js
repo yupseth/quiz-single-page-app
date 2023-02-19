@@ -15,7 +15,9 @@ const currentScore = document.querySelector(".score");
 const buttonGrid = document.querySelector(".button-grid");
 const nextButton = document.querySelector(".next-button");
 const resetButtonWrapper = document.querySelector(".reset-wrapper");
+
 const resetPlayScreen = document.querySelector(".reset-playscreen");
+const questionCounterPlay = document.querySelector(".question-counter");
 
 const errorScreen = document.querySelector(".error-screen");
 const errorMessage = document.querySelector(".error-message");
@@ -125,7 +127,7 @@ function hideLoadingScreen() {
 const displayPlayScreen = function () {
   hideOtherThan("playing");
   playScreen.classList.remove("hidden");
-  // resetButtonWrapper.classList.remove("hidden");
+  updateQuestionCounterDisplay();
 };
 
 function hidePlayScreen() {
@@ -204,6 +206,10 @@ const disableAnswerButtons = function () {
 
 const updateScore = function () {
   currentScore.textContent = `Score: ${score}`;
+};
+
+const updateQuestionCounterDisplay = function () {
+  questionCounterPlay.textContent = `${questionCounter + 1}/${questionLimit}`;
 };
 
 //////////////////////////////////////////////
@@ -315,7 +321,6 @@ const showAnswers = function () {
 
 // EVENTS
 startButton.addEventListener("click", () => {
-  // setState("playing");
   readSelectedCategory();
   readSelectedDifficulty();
   getQuestions();
@@ -323,6 +328,7 @@ startButton.addEventListener("click", () => {
 
 nextButton.addEventListener("click", () => {
   questionCounter++;
+  updateQuestionCounterDisplay();
   nextButton.disabled = true;
 
   if (questionCounter < questionLimit) {
