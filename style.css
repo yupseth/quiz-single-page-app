@@ -16,6 +16,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  user-select: none;
 }
 
 body {
@@ -273,10 +274,25 @@ label {
 .next-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 10%;
   width: 100%;
   background: transparent;
+}
+
+.empty {
+  height: 20px;
+  width: 20px;
+}
+
+.reset-playscreen {
+  background: transparent;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  padding: 3px;
+  transition: transform 600ms ease-in-out;
 }
 
 .next-button {
@@ -338,7 +354,8 @@ label {
   transition: transform 600ms ease-in-out;
 }
 
-.reset-button:hover {
+.reset-button:hover,
+.reset-playscreen:hover {
   transform: rotate(-360deg);
 }
 
