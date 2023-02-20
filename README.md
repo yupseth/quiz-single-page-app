@@ -15,14 +15,14 @@ Please consider that the content of this app (categories, questions and answers,
 ## Tutorial
 
 - Choose one of the provided categories
-- Select the difficulty level using the difficulty slider or the corresponding buttons, then press start
+- Select the difficulty level using the corresponding buttons, then press start
 - Once selected an answer, a visual feedback is given with respect to its validity
 - The next button advances to next questions, respectively to the result.
 - The reset button brings the user back to the home screen.
 
 ## Demo
 
-![A demonstrative gif of how Quizle works and behaves](images/demo-video.gif)
+![A short demonstrative video of how Quizle works and behaves](images/demo.mov)
 
 ## Personal Objective
 

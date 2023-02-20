@@ -36,7 +36,7 @@ let apiData;
 let apiDataResults;
 let questionCounter = 0;
 let score = 0;
-let questionLimit = 10;
+let questionLimit = 2;
 let extraLoadingTime = 1500;
 
 nextButton.disabled = true;
