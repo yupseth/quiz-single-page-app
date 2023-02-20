@@ -22,7 +22,7 @@ Please consider that the content of this app (categories, questions and answers,
 
 ## Demo
 
-![A short demonstrative video of how Quizle works and behaves](images/demo.mov)
+![A short demo of how Quizle works and behaves](images/demo.gif)
 
 ## Personal Objective
 
