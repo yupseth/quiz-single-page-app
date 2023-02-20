@@ -48,7 +48,6 @@ As a self-taught web developer, there was no scarcity of challenges throughout t
 
 - Implementing a way of hiding the irrelevant screens in accordance with the game-stage
 - Displaying consistent (and responsive) styles for desktop, tablet, and mobile screens
-- Creating custom difficulty slider
 - Creating an animated loader
 
 #### Git:
